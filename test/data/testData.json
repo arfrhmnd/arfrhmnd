@@ -1,0 +1,52 @@
+{
+  "urls": {
+    "baseUrl": "http://48997458.hs-sites.com",
+    "homepage": "http://48997458.hs-sites.com/phtn.ai-homepage",
+    "aboutUs": "http://48997458.hs-sites.com/about-us",
+    "contactUs": "http://48997458.hs-sites.com/contact-us"
+  },
+  "credentials": {
+    "validUser": {
+      "username": "testuser@example.com",
+      "password": "TestPassword123!"
+    },
+    "invalidUser": {
+      "username": "invalid@example.com",
+      "password": "WrongPassword"
+    }
+  },
+  "testData": {
+    "pageTitles": {
+      "homepage": "PHTN.ai - Homepage",
+      "aboutUs": "About Us - PHTN.ai",
+      "contactUs": "Contact Us - PHTN.ai"
+    },
+    "expectedTexts": {
+      "heroTitle": "enterprise context.",
+      "heroSubtitle": "domain aware.",
+      "heroDescription": "LLM agnostic.",
+      "companyName": "PHTN.ai"
+    },
+    "navigation": {
+      "menuItems": ["home", "about us", "contact us"],
+      "footerLinks": ["Newsletter", "Copyright"]
+    },
+    "forms": {
+      "newsletter": {
+        "validEmail": "test@example.com",
+        "invalidEmail": "invalid-email"
+      },
+      "contact": {
+        "name": "Test User",
+        "email": "test@example.com",
+        "company": "Test Company",
+        "message": "This is a test message for automation testing."
+      }
+    }
+  },
+  "timeouts": {
+    "short": 5000,
+    "medium": 10000,
+    "long": 30000
+  }
+}
