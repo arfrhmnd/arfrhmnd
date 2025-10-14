@@ -54,3 +54,4 @@ The final output must include:
 4. Example Utility function
 5. Example Config file
 6. Instructions on how to run the tests (via WebdriverIO CLI)
+7. Export report as html file
