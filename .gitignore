@@ -1,1 +1,9 @@
 /node_modules
+/reports
+/allure-results
+/allure-report
+/allure-screenshots
+/allure-videos
+/allure-logs
+/allure-attachments
+/allure-attachments
