@@ -1,9 +1,8 @@
 const { join } = require('path')
-// Temporarily comment out HTML reporter to fix MODULE_NOT_FOUND error
-// const { ReportGenerator, HtmlReporter } = require('wdio-html-nice-reporter')
+const { ReportGenerator, HtmlReporter } = require('wdio-html-nice-reporter')
 
 // Global variable for report aggregator
-// let reportAggregator
+let reportAggregator
 
 /**
  * WebdriverIO Configuration for PHTN.ai Automation Framework
@@ -84,16 +83,15 @@ exports.config = {
             disableWebdriverStepsReporting: true,
             disableWebdriverScreenshotsReporting: false
         }],
-        // Temporarily disabled HTML reporter due to dependency issues
-        // ['html-nice', {
-        //     outputDir: './reports/html-reports/',
-        //     filename: 'report.html',
-        //     reportTitle: 'PHTN.ai Test Report',
-        //     linkScreenshots: true,
-        //     showInBrowser: true,
-        //     collapseTests: false,
-        //     useOnAfterCommandForScreenshot: false
-        // }]
+        ['html-nice', {
+            outputDir: './reports/html-reports/',
+            filename: 'report.html',
+            reportTitle: 'PHTN.ai Test Report',
+            linkScreenshots: true,
+            showInBrowser: true,
+            collapseTests: false,
+            useOnAfterCommandForScreenshot: false
+        }]
     ],
     
     // Mocha options
@@ -113,15 +111,14 @@ exports.config = {
     
     // Hooks
     onPrepare: function (config, capabilities) {
-        // Temporarily disabled HTML report aggregator due to dependency issues
-        // reportAggregator = new ReportGenerator({
-        //     outputDir: './reports/html-reports/',
-        //     filename: 'master-report.html',
-        //     reportTitle: 'PHTN.ai Master Test Report',
-        //     browserName: capabilities[0].browserName || 'chrome',
-        //     collapseTests: true
-        // })
-        // reportAggregator.clean()
+        reportAggregator = new ReportGenerator({
+            outputDir: './reports/html-reports/',
+            filename: 'master-report.html',
+            reportTitle: 'PHTN.ai Master Test Report',
+            browserName: capabilities[0].browserName || 'chrome',
+            collapseTests: true
+        })
+        reportAggregator.clean()
     },
 
     before: function (capabilities, specs) {
@@ -158,15 +155,18 @@ exports.config = {
     },
 
     onComplete: function (exitCode, config, capabilities, results) {
-        // Temporarily disabled HTML report generation due to dependency issues
-        // (async () => {
-        //     try {
-        //         await reportAggregator.createReport()
-        //         console.log('📊 Master HTML report generated successfully')
-        //     } catch (error) {
-        //         console.error('❌ Error generating master HTML report:', error)
-        //     }
-        // })()
+        (async () => {
+            try {
+                if (reportAggregator && typeof reportAggregator.createReport === 'function') {
+                    await reportAggregator.createReport()
+                    console.log('📊 Master HTML report generated successfully')
+                } else {
+                    console.log('📊 HTML reports generated successfully in individual folders')
+                }
+            } catch (error) {
+                console.error('❌ Error generating master HTML report:', error)
+            }
+        })()
         console.log('📊 Test execution completed - Allure reports available in allure-results/')
     },
     
