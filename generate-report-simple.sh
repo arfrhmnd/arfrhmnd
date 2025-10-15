@@ -51,7 +51,7 @@ fi
 
 # Generate report using npx
 print_status "Generating Allure report..."
-npx allure generate allure-results --clean -o allure-report
+npx allure generate allure-results --clean -o "allure-report"
 
 if [ $? -eq 0 ]; then
     print_success "Report generated successfully!"
@@ -59,7 +59,7 @@ if [ $? -eq 0 ]; then
     
     # Open report in browser
     print_status "Opening report in browser..."
-    npx allure open allure-report
+    npx allure open "allure-report"
 else
     print_error "Failed to generate report"
     exit 1
