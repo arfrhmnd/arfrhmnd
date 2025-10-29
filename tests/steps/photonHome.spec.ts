@@ -32,5 +32,5 @@ test('User should be able to fill out Newsletter form', async ({ page }) => {
     await page.locator('//*[@id="hs_form_target_form_news_letter-15"]').click();
     await expect(page.getByText('Thank you for subscribing!')).toBeVisible();
 });
-});
+    });
 //end of test suite

@@ -20,7 +20,16 @@ export default defineConfig({
   workers: process.env.CI ? 1 : undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: [
-    ["allure-playwright"]
+    ["allure-playwright", {
+      detail: true,
+      outputFolder: 'allure-results',
+      suiteTitle: false,
+      environmentInfo: {
+        'Report Title': 'Photon AI Website Redesign - Test Report',
+        'Test Environment': 'Staging',
+        'Execution Date': new Date().toLocaleDateString(),
+      }
+    }]
   ],
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
