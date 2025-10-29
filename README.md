@@ -41,7 +41,8 @@ playwright/
 │   │   └── homePage.ts       # HomePage page object
 │   └── steps/                # Test specification files
 │       ├── photonHome.spec.ts    # Home page tests
-│       └── contactUs.spec.ts     # Contact us form tests
+│       ├── contactUs.spec.ts     # Contact us form tests
+│       └── aboutUs.spec.ts       # About us page tests
 ├── allure-results/           # Raw Allure test results
 ├── allure-report/            # Generated Allure HTML reports
 ├── playwright-report/        # Native Playwright HTML reports
@@ -135,18 +136,42 @@ npx playwright test --debug
 npx playwright test --project=chromium
 ```
 
+### Run specific tests with clean Allure reports
+When running tests by tag, always clean old results first to avoid mixed reports:
+
+```bash
+# Clean results and run specific tag
+rm -rf allure-results && npx playwright test --grep @AboutUs
+
+# Clean, run, generate and open report (one-liner)
+rm -rf allure-results && npx playwright test --grep @AboutUs && npm run allure:generate && npm run allure:open
+```
+
+**Available test tags:**
+- `@HomePage` - Home page navigation tests
+- `@ContactUs` - Contact form tests
+- `@AboutUs` - About Us page tests
+
+**Why clean results?**
+Allure accumulates test results in `allure-results/`. Without cleaning, reports show both old and new test runs mixed together, which can be confusing when running specific tests.
+
 ## 📊 Test Reports
 
 ### Allure Reports
 
 #### Generate Allure report
 ```bash
-npm allure generate allure-results --clean -o allure-report
+npm run allure:generate
 ```
 
 #### Open Allure report
 ```bash
-npm  allure open allure-report
+npm run allure:open
+```
+
+#### View report directly (temporary server)
+```bash
+allure serve allure-results
 ```
 
 ## 🧩 Test Scenarios
@@ -165,6 +190,11 @@ npm  allure open allure-report
 | View contact form fields | Verifies all form fields are visible |
 | Fill contact form | Tests filling and submitting the contact form |
 | Submit with different subject | Tests form submission with career inquiries |
+
+### About Us Tests (@AboutUs)
+| Test Case | Description |
+|-----------|-------------|
+| View About Us page | Verifies user can navigate to About Us section and see the vision content |
 
 ## ⚙️ Configuration
 
