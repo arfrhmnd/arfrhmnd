@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 import { homePage } from '../page-object/homePage';
 
-
+test.describe('@ContactUs', () => {
 test('Then user should see the contact us Form fields', async ({ page }) => {
     const MainPage = new homePage(page);
     await MainPage.goto();
@@ -74,4 +74,5 @@ test('User trying to submit another form with another Subject', async ({ page })
     await expect(page.getByText('Thank you')).toBeVisible();
     await expect(page.getByText('We\'ll be in touch soon.')).toBeVisible();
 
+});
 });
