@@ -8,7 +8,7 @@ test('Then user should see the contact us Form fields', async ({ page }) => {
     
     // Navigate to contact us page
     await page.locator('//*[@id="hs_cos_wrapper_menu"]/nav/div[3]/div/a').click();
-    await expect(page.getByText('how can we help you?')).toBeVisible();
+    await expect(page.locator(`h1:has-text("how can we help you?")`)).toBeVisible();
     
     // Verify contact form fields are visible
     await expect(page.getByRole('textbox', { name: 'First Name' })).toBeVisible();
