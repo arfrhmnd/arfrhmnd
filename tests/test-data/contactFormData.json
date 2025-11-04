@@ -1,0 +1,18 @@
+[
+    {
+      "testCase": "Valid submission - User 1",
+      "firstName": "John",
+      "lastName": "Doe",
+      "email": "john.doe@test.com",
+      "company": "Photon Interactive",
+      "message": "Test message 1"
+    },
+    {
+      "testCase": "Valid submission - User 2",
+      "firstName": "Jane",
+      "lastName": "Smith",
+      "email": "jane.smith@test.com",
+      "company": "Tech Corp",
+      "message": "Test message 2"
+    }
+  ]
